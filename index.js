@@ -1,2 +1,2 @@
-const {game} = require("./lib/project")
+const {game} = require("./lib/slotMachine")
 game()
