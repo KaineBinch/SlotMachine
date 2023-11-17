@@ -6,6 +6,13 @@ class TextBox{
     this.x = x
     this.y = y
   } 
+  update({text, width, height, x, y}){
+    this.text = text ?? this.text
+    this.width = width ?? this.width
+    this.height = height ?? this.height
+    this.x = x ?? this.x
+    this.y = y ?? this.y
+  }
   render(){
     fill(60, 20, 60)
     strokeWeight(3)
