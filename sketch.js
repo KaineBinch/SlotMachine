@@ -1,17 +1,16 @@
-let w 
-let h 
-let textBox
+let w
+let h
+let slotMachine
+let button
+
 function setup() {
   w = windowWidth * 0.97
   h = windowHeight * 0.97
-  textBox = new TextBox("Test text", 100, 200, ((w/2) - 50), (h/2) - 80)
   createCanvas(w, h);
+  slotMachine = new SlotMachine(w, h)
+  spinButton = new SpinButton(text, width, height)
 }
-let i = 0 
-
 function draw() {
   background(51);
-  textBox.update({x: textBox.x + i})
-  textBox.render()
-  i++
+  slotMachine.render()
 }
