@@ -1,17 +1,15 @@
 const chars = "ABC"
 
 class Reel {
-  constructor(finishedCallback, x, y) {
+  constructor(x, y) {
     this.index = 0
-    this.symbols = new Array(chars.length).fill(0).map((_, i) => new ReelSymbol(chars[i]))
+    this.symbols = new Array(chars.length).fill(0).map((_, i) => new ReelSymbol(chars[i], x + 63, y + 75 + (i * 60)))
     this.isSpinning = false
-    this.callback = finishedCallback
     this.x = x
     this.y = y
   }
-  spin() {
-
-    this.callback()
+  spin(callback) {
+    callback()
   }
   render() {
     noStroke()
@@ -23,6 +21,8 @@ class Reel {
     for (const symbol of this.symbols) {
       symbol.render()
     }
-
+    fill(150)
+    rect(this.x + borderWidth, this.y + borderWidth, 150 - (borderWidth * 2), (250 - (borderWidth * 2)) / 3)
+    rect(this.x + borderWidth, this.y + borderWidth + ((250 - (borderWidth * 2)) / 3) * 2, 150 - (borderWidth * 2), (250 - (borderWidth * 2)) / 3)
   }
 }

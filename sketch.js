@@ -14,3 +14,6 @@ function draw() {
   background(51);
   slotMachine.render()
 }
+function mouseReleased(e) {
+  slotMachine.spin(e)
+}

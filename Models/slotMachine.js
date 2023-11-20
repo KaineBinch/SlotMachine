@@ -1,7 +1,7 @@
 class SlotMachine {
   constructor(w, h) {
     this.balance = 0
-    this.reels = new Array(3).fill(0).map((_, i) => new Reel(this._finishedCallback, (i * 150) + (i * 20) + 187, (h / 4)))
+    this.reels = new Array(3).fill(0).map((_, i) => new Reel((i * 150) + (i * 20) + 187, (h / 4)))
     this.w = 800
     this.h = 500
     this.canvasWidth = w
@@ -17,9 +17,14 @@ class SlotMachine {
   deposit(amount) {
     if (amount > 0) this.balance += amount
   }
-  spin() {
+  spin(e) {
+    if (e.offsetX < (w / 2) - (100 / 2)) return
+    if (e.offsetY < (h / 4) * 3) return
+    if (e.offsetX > ((w / 2) - (100 / 2)) + 100) return
+    if (e.offsetY > ((h / 4) * 3) + 40) return
+
     for (const reel of this.reels) {
-      reel.spin()
+      reel.spin(() => this._finishedCallback())
     }
   }
   render() {
